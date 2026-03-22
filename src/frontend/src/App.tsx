@@ -95,19 +95,40 @@ function IndexRoute() {
     retry: false,
   });
 
+  const profileLoading =
+    actorFetching || (isAuthenticated && profileQuery.isLoading);
+  const profile = profileQuery.data ?? null;
+  const profileFetched = profileQuery.isFetched;
+
   useEffect(() => {
     if (!isAuthenticated) return;
-    const profile = profileQuery.data;
-    if (profile === undefined) return;
-    if (profile === null) return;
+    if (profileLoading || !profileFetched) return;
+    if (profile === null) return; // will show SetupProfile below
     if (profile.role.__kind__ === "parent") {
       navigate({ to: "/parent" });
     } else {
       navigate({ to: "/dashboard" });
     }
-  }, [isAuthenticated, profileQuery.data, navigate]);
+  }, [isAuthenticated, profile, profileLoading, profileFetched, navigate]);
 
   if (!isAuthenticated) return <AuthPage />;
+
+  // Still loading profile
+  if (profileLoading || !profileFetched) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-app-bg">
+        <div
+          className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin"
+          style={{ borderColor: "#0A8C84", borderTopColor: "transparent" }}
+        />
+      </div>
+    );
+  }
+
+  // First-time user: no profile yet
+  if (profile === null) return <SetupProfile />;
+
+  // Has profile, navigating (show spinner briefly)
   return (
     <div className="min-h-screen flex items-center justify-center bg-app-bg">
       <div

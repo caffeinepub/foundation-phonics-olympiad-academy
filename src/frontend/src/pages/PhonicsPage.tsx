@@ -63,6 +63,17 @@ const SAMPLE_WORKSHEETS = [
   },
 ];
 
+function speakLetter(entry: PhonicsEntry) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(
+    `${entry.letter}. ${entry.word}`,
+  );
+  utterance.rate = 0.85;
+  utterance.pitch = 1.1;
+  window.speechSynthesis.speak(utterance);
+}
+
 export default function PhonicsPage() {
   const [tab, setTab] = useState<"soundboard" | "worksheets">("soundboard");
   const [selected, setSelected] = useState<PhonicsEntry | null>(null);
@@ -72,6 +83,11 @@ export default function PhonicsPage() {
     !isLoading && worksheets && worksheets.length > 0
       ? worksheets
       : SAMPLE_WORKSHEETS;
+
+  function handleLetterTap(p: PhonicsEntry) {
+    setSelected(p);
+    speakLetter(p);
+  }
 
   return (
     <div className="min-h-screen bg-app-bg">
@@ -128,7 +144,7 @@ export default function PhonicsPage() {
                       key={p.letter}
                       type="button"
                       data-ocid="phonics.letter.button"
-                      onClick={() => setSelected(p)}
+                      onClick={() => handleLetterTap(p)}
                       className="aspect-square rounded-2xl flex items-center justify-center font-display font-extrabold text-xl text-white shadow-card transition-transform active:scale-90"
                       style={{ background: isVowel ? "#F39A3A" : "#0A8C84" }}
                     >
@@ -258,10 +274,23 @@ export default function PhonicsPage() {
               <p className="text-app-muted text-sm mt-2">🔊 Say it out loud!</p>
               <button
                 type="button"
+                data-ocid="phonics.letter.replay_button"
+                onClick={() => speakLetter(selected)}
+                className="mt-4 w-full py-3 rounded-2xl font-bold text-white text-sm"
+                style={{
+                  background: VOWELS.has(selected.letter)
+                    ? "#F39A3A"
+                    : "#0A8C84",
+                }}
+              >
+                🔊 Replay Sound
+              </button>
+              <button
+                type="button"
                 data-ocid="phonics.letter.close_button"
                 onClick={() => setSelected(null)}
-                className="mt-5 w-full py-3 rounded-2xl font-bold text-white text-sm"
-                style={{ background: "#0A8C84" }}
+                className="mt-2 w-full py-3 rounded-2xl font-bold text-sm border-2"
+                style={{ borderColor: "#0A8C84", color: "#0A8C84" }}
               >
                 Got it! ✓
               </button>
