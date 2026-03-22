@@ -78,6 +78,7 @@ export default function OlympiadPage() {
   );
   const [timeLeft, setTimeLeft] = useState(60);
   const [testDone, setTestDone] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const { data: leaderboard, isLoading: lbLoading } = useGetLeaderboard();
@@ -90,11 +91,14 @@ export default function OlympiadPage() {
   const finishTest = useCallback(
     async (finalAnswers: (string | null)[]) => {
       if (timerRef.current) clearInterval(timerRef.current);
-      setTestDone(true);
-      setTestActive(false);
       const scoreVal = finalAnswers.filter(
         (a, i) => a === QUESTIONS[i].ans,
       ).length;
+      setFinalScore(scoreVal);
+      setTestDone(true);
+      setTestActive(false);
+      // Save to localStorage so dashboard can read it
+      localStorage.setItem("lastTestScore", String(scoreVal));
       try {
         await submitTest.mutateAsync({ studentId, score: BigInt(scoreVal) });
       } catch (e) {
@@ -154,21 +158,23 @@ export default function OlympiadPage() {
   const startTest = () => {
     setTestActive(true);
     setTestDone(false);
+    setFinalScore(0);
     setCurrentQ(0);
     setAnswers(Array(QUESTIONS.length).fill(null));
     setSelectedAns(null);
     setTimeLeft(60);
   };
 
-  const score = answers.filter((a, i) => a === QUESTIONS[i].ans).length;
-
   const leaders =
     !lbLoading && leaderboard && leaderboard.length > 0
-      ? leaderboard.map(([, sc], i) => ({
-          name: `Student #${i + 1}`,
-          score: Number(sc),
-        }))
-      : SAMPLE_LEADERS;
+      ? leaderboard
+          .map(([id, sc], i) => ({
+            name: `Student #${String(id).slice(-4) || i + 1}`,
+            score: Number(sc),
+            id: String(id),
+          }))
+          .sort((a, b) => b.score - a.score)
+      : SAMPLE_LEADERS.map((l) => ({ ...l, id: l.name }));
 
   return (
     <div className="min-h-screen bg-app-bg">
@@ -182,7 +188,7 @@ export default function OlympiadPage() {
               type="button"
               data-ocid={`olympiad.${t}.tab`}
               onClick={() => setTab(t)}
-              className="flex-1 py-2 rounded-xl text-xs font-bold transition-all"
+              className="flex-1 py-2 rounded-xl text-xs font-bold transition-all min-h-[44px]"
               style={{
                 background: tab === t ? "#F39A3A" : "transparent",
                 color: tab === t ? "#fff" : "#6B7280",
@@ -255,7 +261,7 @@ export default function OlympiadPage() {
                       data-ocid="olympiad.qod.option.button"
                       disabled={qodSubmitted}
                       onClick={() => setQodSelected(opt)}
-                      className="w-full p-4 rounded-2xl text-left font-semibold text-sm transition-all border-2 shadow-xs"
+                      className="w-full p-4 rounded-2xl text-left font-semibold text-sm transition-all border-2 shadow-xs min-h-[52px]"
                       style={{ background: bg, color: textColor, borderColor }}
                     >
                       <span
@@ -276,7 +282,7 @@ export default function OlympiadPage() {
                   data-ocid="olympiad.qod.submit.button"
                   disabled={!qodSelected}
                   onClick={() => setQodSubmitted(true)}
-                  className="w-full py-4 rounded-2xl font-bold text-white transition-all disabled:opacity-40"
+                  className="w-full py-4 rounded-2xl font-bold text-white transition-all disabled:opacity-40 min-h-[52px]"
                   style={{ background: "#F39A3A" }}
                 >
                   Submit Answer
@@ -315,7 +321,7 @@ export default function OlympiadPage() {
                       setQodSubmitted(false);
                       setQodSelected(null);
                     }}
-                    className="mt-3 px-5 py-2 rounded-xl text-sm font-bold text-white"
+                    className="mt-3 px-5 py-2.5 rounded-xl text-sm font-bold text-white min-h-[44px]"
                     style={{ background: "#0A8C84" }}
                   >
                     Try Again
@@ -351,7 +357,7 @@ export default function OlympiadPage() {
                     type="button"
                     data-ocid="olympiad.test.start.button"
                     onClick={startTest}
-                    className="px-10 py-4 rounded-2xl font-display font-bold text-white text-lg shadow-card"
+                    className="px-10 py-4 rounded-2xl font-display font-bold text-white text-lg shadow-card min-h-[56px]"
                     style={{
                       background: "linear-gradient(135deg, #F39A3A, #D67622)",
                     }}
@@ -404,7 +410,7 @@ export default function OlympiadPage() {
                         type="button"
                         data-ocid="olympiad.test.option.button"
                         onClick={() => setSelectedAns(opt)}
-                        className="w-full p-4 rounded-2xl text-left font-semibold text-sm transition-all border-2"
+                        className="w-full p-4 rounded-2xl text-left font-semibold text-sm transition-all border-2 min-h-[52px]"
                         style={{
                           background: selectedAns === opt ? "#E8F5F4" : "#fff",
                           borderColor:
@@ -433,7 +439,7 @@ export default function OlympiadPage() {
                     onClick={() =>
                       handleNextQuestion(answers, selectedAns, currentQ)
                     }
-                    className="w-full py-4 rounded-2xl font-bold text-white"
+                    className="w-full py-4 rounded-2xl font-bold text-white min-h-[52px]"
                     style={{ background: "#F39A3A" }}
                   >
                     {currentQ + 1 === QUESTIONS.length
@@ -462,12 +468,12 @@ export default function OlympiadPage() {
                   >
                     <p className="text-white/80 text-sm">Your Score</p>
                     <p className="font-display font-black text-5xl text-white mt-1">
-                      {score}/{QUESTIONS.length}
+                      {finalScore}/{QUESTIONS.length}
                     </p>
                     <p className="text-sm mt-1" style={{ color: "#FFBB63" }}>
-                      {score === QUESTIONS.length
+                      {finalScore === QUESTIONS.length
                         ? "Perfect! 🌟"
-                        : score >= 3
+                        : finalScore >= 3
                           ? "Great job! 👏"
                           : "Keep practicing! 💪"}
                     </p>
@@ -476,7 +482,7 @@ export default function OlympiadPage() {
                     type="button"
                     data-ocid="olympiad.test.retry.button"
                     onClick={startTest}
-                    className="w-full py-4 rounded-2xl font-bold text-white"
+                    className="w-full py-4 rounded-2xl font-bold text-white min-h-[52px]"
                     style={{ background: "#F39A3A" }}
                   >
                     Try Again 🔁
@@ -506,7 +512,7 @@ export default function OlympiadPage() {
                   Leaderboard
                 </p>
                 <p className="text-white/70 text-xs">
-                  Top performers this month
+                  Top performers this month · Updates every 10s
                 </p>
               </div>
 
@@ -537,7 +543,7 @@ export default function OlympiadPage() {
               ) : (
                 leaders.map((entry, i) => (
                   <div
-                    key={entry.name}
+                    key={entry.id}
                     data-ocid={`olympiad.leaderboard.item.${i + 1}`}
                     className="flex items-center gap-3 rounded-2xl p-4 shadow-card"
                     style={{
@@ -571,8 +577,8 @@ export default function OlympiadPage() {
                         .slice(0, 2)
                         .join("")}
                     </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm text-app-text">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm text-app-text truncate">
                         {entry.name}
                       </p>
                       <p className="text-xs text-app-muted">
@@ -581,7 +587,7 @@ export default function OlympiadPage() {
                     </div>
                     {i === 0 && (
                       <span
-                        className="text-xs font-bold px-2 py-1 rounded-lg"
+                        className="text-xs font-bold px-2 py-1 rounded-lg flex-shrink-0"
                         style={{ background: "#FFF5E6", color: "#F39A3A" }}
                       >
                         Top!

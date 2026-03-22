@@ -70,6 +70,20 @@ export function useGetLeaderboard() {
       return actor.getLeaderboard();
     },
     enabled: !!actor && !isFetching,
+    refetchInterval: 10000,
+  });
+}
+
+export function useGetStudentPhonics(studentId: bigint | null) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["studentPhonics", studentId?.toString()],
+    queryFn: async () => {
+      if (!actor || studentId === null) return [];
+      return actor.getStudentPhonics(studentId);
+    },
+    enabled: !!actor && !isFetching && studentId !== null,
+    refetchInterval: 10000,
   });
 }
 
@@ -86,6 +100,7 @@ export function useSubmitTestSession() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
+      queryClient.invalidateQueries({ queryKey: ["studentPhonics"] });
     },
   });
 }

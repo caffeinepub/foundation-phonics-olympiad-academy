@@ -9,37 +9,38 @@ type PhonicsEntry = {
   word: string;
   emoji: string;
   ipa: string;
+  sound: string; // short phonetic sound e.g. 'ae'
 };
 
 const VOWELS = new Set(["A", "E", "I", "O", "U"]);
 
 const PHONICS_DATA: PhonicsEntry[] = [
-  { letter: "A", word: "Apple", emoji: "🍎", ipa: "/æ/" },
-  { letter: "B", word: "Ball", emoji: "⚽", ipa: "/b/" },
-  { letter: "C", word: "Cat", emoji: "🐱", ipa: "/k/" },
-  { letter: "D", word: "Dog", emoji: "🐶", ipa: "/d/" },
-  { letter: "E", word: "Elephant", emoji: "🐘", ipa: "/ɛ/" },
-  { letter: "F", word: "Fish", emoji: "🐟", ipa: "/f/" },
-  { letter: "G", word: "Goat", emoji: "🐐", ipa: "/g/" },
-  { letter: "H", word: "Hat", emoji: "🎩", ipa: "/h/" },
-  { letter: "I", word: "Ice", emoji: "🧊", ipa: "/aɪ/" },
-  { letter: "J", word: "Jug", emoji: "🫙", ipa: "/dʒ/" },
-  { letter: "K", word: "Kite", emoji: "🪁", ipa: "/k/" },
-  { letter: "L", word: "Lion", emoji: "🦁", ipa: "/l/" },
-  { letter: "M", word: "Moon", emoji: "🌙", ipa: "/m/" },
-  { letter: "N", word: "Nest", emoji: "🪺", ipa: "/n/" },
-  { letter: "O", word: "Orange", emoji: "🍊", ipa: "/ɒ/" },
-  { letter: "P", word: "Pen", emoji: "✏️", ipa: "/p/" },
-  { letter: "Q", word: "Queen", emoji: "👑", ipa: "/kw/" },
-  { letter: "R", word: "Rain", emoji: "🌧️", ipa: "/r/" },
-  { letter: "S", word: "Sun", emoji: "☀️", ipa: "/s/" },
-  { letter: "T", word: "Tree", emoji: "🌳", ipa: "/t/" },
-  { letter: "U", word: "Umbrella", emoji: "☂️", ipa: "/ʌ/" },
-  { letter: "V", word: "Van", emoji: "🚐", ipa: "/v/" },
-  { letter: "W", word: "Water", emoji: "💧", ipa: "/w/" },
-  { letter: "X", word: "Xylophone", emoji: "🎵", ipa: "/z/" },
-  { letter: "Y", word: "Yellow", emoji: "💛", ipa: "/j/" },
-  { letter: "Z", word: "Zebra", emoji: "🦓", ipa: "/z/" },
+  { letter: "A", word: "Apple", emoji: "🍎", ipa: "/æ/", sound: "aye" },
+  { letter: "B", word: "Ball", emoji: "⚽", ipa: "/b/", sound: "buh" },
+  { letter: "C", word: "Cat", emoji: "🐱", ipa: "/k/", sound: "kuh" },
+  { letter: "D", word: "Dog", emoji: "🐶", ipa: "/d/", sound: "duh" },
+  { letter: "E", word: "Elephant", emoji: "🐘", ipa: "/ɛ/", sound: "eh" },
+  { letter: "F", word: "Fish", emoji: "🐟", ipa: "/f/", sound: "fuh" },
+  { letter: "G", word: "Goat", emoji: "🐐", ipa: "/g/", sound: "guh" },
+  { letter: "H", word: "Hat", emoji: "🎩", ipa: "/h/", sound: "huh" },
+  { letter: "I", word: "Ice", emoji: "🧊", ipa: "/aɪ/", sound: "ih" },
+  { letter: "J", word: "Jug", emoji: "🫙", ipa: "/dʒ/", sound: "juh" },
+  { letter: "K", word: "Kite", emoji: "🪁", ipa: "/k/", sound: "kuh" },
+  { letter: "L", word: "Lion", emoji: "🦁", ipa: "/l/", sound: "luh" },
+  { letter: "M", word: "Moon", emoji: "🌙", ipa: "/m/", sound: "muh" },
+  { letter: "N", word: "Nest", emoji: "🪺", ipa: "/n/", sound: "nuh" },
+  { letter: "O", word: "Orange", emoji: "🍊", ipa: "/ɒ/", sound: "oh" },
+  { letter: "P", word: "Pen", emoji: "✏️", ipa: "/p/", sound: "puh" },
+  { letter: "Q", word: "Queen", emoji: "👑", ipa: "/kw/", sound: "kwuh" },
+  { letter: "R", word: "Rain", emoji: "🌧️", ipa: "/r/", sound: "ruh" },
+  { letter: "S", word: "Sun", emoji: "☀️", ipa: "/s/", sound: "sss" },
+  { letter: "T", word: "Tree", emoji: "🌳", ipa: "/t/", sound: "tuh" },
+  { letter: "U", word: "Umbrella", emoji: "☂️", ipa: "/ʌ/", sound: "uh" },
+  { letter: "V", word: "Van", emoji: "🚐", ipa: "/v/", sound: "vuh" },
+  { letter: "W", word: "Water", emoji: "💧", ipa: "/w/", sound: "wuh" },
+  { letter: "X", word: "Xylophone", emoji: "🎵", ipa: "/z/", sound: "ks" },
+  { letter: "Y", word: "Yellow", emoji: "💛", ipa: "/j/", sound: "yuh" },
+  { letter: "Z", word: "Zebra", emoji: "🦓", ipa: "/z/", sound: "zzz" },
 ];
 
 const SAMPLE_WORKSHEETS = [
@@ -66,10 +67,11 @@ const SAMPLE_WORKSHEETS = [
 function speakLetter(entry: PhonicsEntry) {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
+  // Say: "A. ae. ae. Apple."
   const utterance = new SpeechSynthesisUtterance(
-    `${entry.letter}. ${entry.word}`,
+    `${entry.letter}. ${entry.sound}. ${entry.sound}. ${entry.word}.`,
   );
-  utterance.rate = 0.85;
+  utterance.rate = 0.8;
   utterance.pitch = 1.1;
   window.speechSynthesis.speak(utterance);
 }
@@ -261,7 +263,8 @@ export default function PhonicsPage() {
                 {selected.emoji}
               </div>
               <p className="font-display font-extrabold text-2xl text-app-text">
-                {selected.letter} = {selected.word}
+                {selected.letter} = &lsquo;{selected.sound}&rsquo; &lsquo;
+                {selected.sound}&rsquo; {selected.word}
               </p>
               <p
                 className="font-mono text-xl font-bold mt-1"
