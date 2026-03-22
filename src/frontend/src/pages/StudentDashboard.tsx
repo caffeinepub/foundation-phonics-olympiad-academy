@@ -14,7 +14,7 @@ const ACTIVITIES = [
   },
   {
     icon: "🏆",
-    label: "Math Quiz \u2013 Olympiad Prep",
+    label: "Math Quiz – Olympiad Prep",
     time: "Yesterday, 3:15 PM",
     score: "4/5",
   },
@@ -41,8 +41,8 @@ export default function StudentDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="font-display font-extrabold text-2xl text-royal-blue">
-            Welcome back, {firstName}! \ud83d\udc4b
+          <h2 className="font-display font-extrabold text-2xl text-teal">
+            Welcome back, {firstName}! 👋
           </h2>
           <p className="text-app-muted text-sm mt-0.5">{today}</p>
         </motion.div>
@@ -54,20 +54,20 @@ export default function StudentDashboard() {
           className="rounded-3xl p-5 relative overflow-hidden shadow-card"
           style={{
             background:
-              "linear-gradient(135deg, #1F4B9A 0%, #2D5EC7 60%, #3B6FD4 100%)",
+              "linear-gradient(135deg, #0A8C84 0%, #19A79C 60%, #1DBDB1 100%)",
           }}
         >
           <div className="relative z-10">
             <p className="text-white/80 text-sm font-medium">Daily Goal</p>
             <p className="text-white font-display font-extrabold text-xl mt-1">
-              Ready to learn today? \u2b50
+              Ready to learn today? ⭐
             </p>
             <p className="text-white/70 text-sm mt-1">
               Complete 2 activities to earn your star!
             </p>
           </div>
           <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-20 text-8xl">
-            \ud83c\udf1f
+            🌟
           </div>
         </motion.div>
 
@@ -85,9 +85,9 @@ export default function StudentDashboard() {
               data-ocid="dashboard.phonics.button"
               onClick={() => navigate({ to: "/phonics" })}
               className="rounded-3xl p-5 text-left touch-target shadow-card transition-transform active:scale-95"
-              style={{ background: "#1F4B9A" }}
+              style={{ background: "#0A8C84" }}
             >
-              <span className="text-4xl block mb-2">\ud83d\udcda</span>
+              <span className="text-4xl block mb-2">📚</span>
               <p className="text-white font-display font-extrabold text-base leading-tight">
                 PHONICS
               </p>
@@ -102,9 +102,9 @@ export default function StudentDashboard() {
               data-ocid="dashboard.olympiad.button"
               onClick={() => navigate({ to: "/olympiad" })}
               className="rounded-3xl p-5 text-left touch-target shadow-card transition-transform active:scale-95"
-              style={{ background: "#C9A23A" }}
+              style={{ background: "#F39A3A" }}
             >
-              <span className="text-4xl block mb-2">\ud83c\udfc6</span>
+              <span className="text-4xl block mb-2">🏆</span>
               <p className="text-white font-display font-extrabold text-base leading-tight">
                 OLYMPIAD
               </p>
@@ -127,26 +127,26 @@ export default function StudentDashboard() {
           <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4">
             <div
               className="flex-shrink-0 w-44 rounded-2xl p-4 shadow-card bg-white border-l-4"
-              style={{ borderLeftColor: "#1F4B9A" }}
+              style={{ borderLeftColor: "#0A8C84" }}
             >
-              <p className="text-2xl mb-2">\ud83d\udcda</p>
-              <p className="font-bold text-sm text-royal-blue">Phonics</p>
+              <p className="text-2xl mb-2">📚</p>
+              <p className="font-bold text-sm text-teal">Phonics</p>
               <p className="text-xs text-app-muted mb-2">Level 3 of 5</p>
               <Progress value={60} className="h-2" />
-              <p className="text-xs text-royal-blue font-semibold mt-1">60%</p>
+              <p className="text-xs text-teal font-semibold mt-1">60%</p>
             </div>
             <div
               className="flex-shrink-0 w-44 rounded-2xl p-4 shadow-card bg-white border-l-4"
-              style={{ borderLeftColor: "#C9A23A" }}
+              style={{ borderLeftColor: "#F39A3A" }}
             >
-              <p className="text-2xl mb-2">\ud83c\udfc6</p>
-              <p className="font-bold text-sm text-gold">Olympiad</p>
+              <p className="text-2xl mb-2">🏆</p>
+              <p className="font-bold text-sm text-amber">Olympiad</p>
               <p className="text-xs text-app-muted mb-2">Level 1 of 5</p>
               <Progress value={30} className="h-2" />
-              <p className="text-xs text-gold font-semibold mt-1">30%</p>
+              <p className="text-xs text-amber font-semibold mt-1">30%</p>
             </div>
             <div className="flex-shrink-0 w-44 rounded-2xl p-4 shadow-card bg-white border-l-4 border-l-emerald-500">
-              <p className="text-2xl mb-2">\ud83e\udde0</p>
+              <p className="text-2xl mb-2">🧠</p>
               <p className="font-bold text-sm text-emerald-600">Logic</p>
               <p className="text-xs text-app-muted mb-2">Level 2 of 5</p>
               <Progress value={45} className="h-2" />
@@ -172,7 +172,7 @@ export default function StudentDashboard() {
               >
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
-                  style={{ background: "#EAF4FF" }}
+                  style={{ background: "#E8F5F4" }}
                 >
                   {a.icon}
                 </div>
@@ -184,7 +184,7 @@ export default function StudentDashboard() {
                 </div>
                 <div
                   className="text-xs font-bold px-2 py-1 rounded-lg text-white flex-shrink-0"
-                  style={{ background: "#1F4B9A" }}
+                  style={{ background: "#0A8C84" }}
                 >
                   {a.score}
                 </div>

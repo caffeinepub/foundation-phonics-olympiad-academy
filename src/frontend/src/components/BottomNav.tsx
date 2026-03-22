@@ -15,7 +15,7 @@ export default function BottomNav() {
   return (
     <nav
       className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bottom-nav-height shadow-nav z-40"
-      style={{ background: "#1F4B9A" }}
+      style={{ background: "#0A8C84" }}
     >
       <div className="flex items-center justify-around h-[60px]">
         {NAV_ITEMS.map((item) => {
@@ -39,14 +39,14 @@ export default function BottomNav() {
               <span className="text-xl leading-none">{item.icon}</span>
               <span
                 className="text-[10px] font-bold mt-0.5 transition-colors"
-                style={{ color: active ? "#C9A23A" : "rgba(255,255,255,0.7)" }}
+                style={{ color: active ? "#F39A3A" : "rgba(255,255,255,0.7)" }}
               >
                 {item.label}
               </span>
               {active && (
                 <span
                   className="absolute bottom-1 w-1 h-1 rounded-full"
-                  style={{ background: "#C9A23A" }}
+                  style={{ background: "#F39A3A" }}
                 />
               )}
             </button>

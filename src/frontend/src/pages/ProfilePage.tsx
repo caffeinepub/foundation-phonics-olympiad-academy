@@ -76,7 +76,7 @@ export default function ProfilePage() {
         >
           <div
             className="w-24 h-24 rounded-full flex items-center justify-center font-display font-black text-3xl text-white shadow-card mb-3"
-            style={{ background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)" }}
+            style={{ background: "linear-gradient(135deg, #0A8C84, #19A79C)" }}
           >
             {initials}
           </div>
@@ -88,7 +88,7 @@ export default function ProfilePage() {
                 type="text"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-white text-app-text text-base text-center focus:outline-none focus:ring-2 focus:ring-royal-blue"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-white text-app-text text-base text-center focus:outline-none focus:ring-2 focus:ring-teal"
               />
               <div className="flex gap-2">
                 <button
@@ -97,7 +97,7 @@ export default function ProfilePage() {
                   onClick={handleSave}
                   disabled={saveProfile.isPending}
                   className="flex-1 py-3 rounded-xl font-bold text-white text-sm"
-                  style={{ background: "#1F4B9A" }}
+                  style={{ background: "#0A8C84" }}
                 >
                   {saveProfile.isPending ? "Saving..." : "Save"}
                 </button>
@@ -119,7 +119,7 @@ export default function ProfilePage() {
               <div className="flex items-center gap-2 mt-1">
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: isStudent ? "#1F4B9A" : "#C9A23A" }}
+                  style={{ background: isStudent ? "#0A8C84" : "#F39A3A" }}
                 >
                   {isStudent ? "📚 Student" : "👨‍👩‍👦 Parent"}
                 </span>
@@ -136,7 +136,7 @@ export default function ProfilePage() {
           className="space-y-3 mb-6"
         >
           <div className="bg-white rounded-2xl p-4 shadow-card">
-            <h3 className="font-display font-bold text-sm text-royal-blue mb-3">
+            <h3 className="font-display font-bold text-sm text-teal mb-3">
               Account Details
             </h3>
             <div className="space-y-3">
@@ -158,14 +158,14 @@ export default function ProfilePage() {
 
           {isStudent && (
             <div className="bg-white rounded-2xl p-4 shadow-card">
-              <h3 className="font-display font-bold text-sm text-royal-blue mb-3">
+              <h3 className="font-display font-bold text-sm text-teal mb-3">
                 My Stats
               </h3>
               <div className="grid grid-cols-3 gap-3">
                 {STATS.map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-2xl">{stat.icon}</p>
-                    <p className="font-display font-bold text-lg text-royal-blue">
+                    <p className="font-display font-bold text-lg text-teal">
                       {stat.val}
                     </p>
                     <p className="text-xs text-app-muted">{stat.label}</p>
@@ -189,7 +189,7 @@ export default function ProfilePage() {
               data-ocid="profile.edit.button"
               onClick={handleEdit}
               className="w-full py-4 rounded-2xl font-bold text-sm border-2 bg-white transition-all"
-              style={{ borderColor: "#1F4B9A", color: "#1F4B9A" }}
+              style={{ borderColor: "#0A8C84", color: "#0A8C84" }}
             >
               ✏️ Edit Name
             </button>

@@ -43,11 +43,11 @@ export default function SetupProfile() {
         <div className="text-center mb-8">
           <div
             className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-4"
-            style={{ background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)" }}
+            style={{ background: "linear-gradient(135deg, #0A8C84, #19A79C)" }}
           >
             <span className="text-4xl">👋</span>
           </div>
-          <h1 className="font-display font-extrabold text-2xl text-royal-blue">
+          <h1 className="font-display font-extrabold text-2xl text-teal">
             Welcome!
           </h1>
           <p className="text-app-muted text-sm mt-1">
@@ -70,7 +70,7 @@ export default function SetupProfile() {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your full name"
-              className="w-full px-4 py-3.5 rounded-xl border border-border bg-white text-app-text text-base focus:outline-none focus:ring-2 focus:ring-royal-blue"
+              className="w-full px-4 py-3.5 rounded-xl border border-border bg-white text-app-text text-base focus:outline-none focus:ring-2 focus:ring-teal"
               autoComplete="name"
             />
           </div>
@@ -86,9 +86,9 @@ export default function SetupProfile() {
                 onClick={() => setRole("student")}
                 className="py-3 rounded-xl font-bold text-sm transition-all border-2"
                 style={{
-                  background: role === "student" ? "#1F4B9A" : "#fff",
-                  color: role === "student" ? "#fff" : "#1F4B9A",
-                  borderColor: role === "student" ? "#C9A23A" : "#e5e7eb",
+                  background: role === "student" ? "#0A8C84" : "#fff",
+                  color: role === "student" ? "#fff" : "#0A8C84",
+                  borderColor: role === "student" ? "#F39A3A" : "#e5e7eb",
                 }}
               >
                 📚 Student
@@ -99,9 +99,9 @@ export default function SetupProfile() {
                 onClick={() => setRole("parent")}
                 className="py-3 rounded-xl font-bold text-sm transition-all border-2"
                 style={{
-                  background: role === "parent" ? "#C9A23A" : "#fff",
-                  color: role === "parent" ? "#fff" : "#C9A23A",
-                  borderColor: role === "parent" ? "#1F4B9A" : "#e5e7eb",
+                  background: role === "parent" ? "#F39A3A" : "#fff",
+                  color: role === "parent" ? "#fff" : "#F39A3A",
+                  borderColor: role === "parent" ? "#0A8C84" : "#e5e7eb",
                 }}
               >
                 👨‍👩‍👦 Parent
@@ -122,7 +122,7 @@ export default function SetupProfile() {
                 data-ocid="setup.grade.select"
                 value={grade}
                 onChange={(e) => setGrade(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-xl border border-border bg-white text-app-text text-base focus:outline-none focus:ring-2 focus:ring-royal-blue"
+                className="w-full px-4 py-3.5 rounded-xl border border-border bg-white text-app-text text-base focus:outline-none focus:ring-2 focus:ring-teal"
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((g) => (
                   <option key={g} value={String(g)}>
@@ -138,7 +138,7 @@ export default function SetupProfile() {
             data-ocid="setup.submit.button"
             disabled={saveProfile.isPending}
             className="w-full py-4 rounded-2xl font-display font-bold text-white text-lg mt-2 transition-all disabled:opacity-60"
-            style={{ background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)" }}
+            style={{ background: "linear-gradient(135deg, #0A8C84, #19A79C)" }}
           >
             {saveProfile.isPending ? (
               <span className="flex items-center justify-center gap-2">

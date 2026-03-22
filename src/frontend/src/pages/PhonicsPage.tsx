@@ -86,7 +86,7 @@ export default function PhonicsPage() {
             onClick={() => setTab("soundboard")}
             className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
             style={{
-              background: tab === "soundboard" ? "#1F4B9A" : "transparent",
+              background: tab === "soundboard" ? "#0A8C84" : "transparent",
               color: tab === "soundboard" ? "#fff" : "#6B7280",
             }}
           >
@@ -98,7 +98,7 @@ export default function PhonicsPage() {
             onClick={() => setTab("worksheets")}
             className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
             style={{
-              background: tab === "worksheets" ? "#1F4B9A" : "transparent",
+              background: tab === "worksheets" ? "#0A8C84" : "transparent",
               color: tab === "worksheets" ? "#fff" : "#6B7280",
             }}
           >
@@ -130,7 +130,7 @@ export default function PhonicsPage() {
                       data-ocid="phonics.letter.button"
                       onClick={() => setSelected(p)}
                       className="aspect-square rounded-2xl flex items-center justify-center font-display font-extrabold text-xl text-white shadow-card transition-transform active:scale-90"
-                      style={{ background: isVowel ? "#C9A23A" : "#1F4B9A" }}
+                      style={{ background: isVowel ? "#F39A3A" : "#0A8C84" }}
                     >
                       {p.letter}
                     </button>
@@ -139,11 +139,11 @@ export default function PhonicsPage() {
               </div>
               <div className="flex items-center gap-3 mt-4">
                 <div className="flex items-center gap-1.5">
-                  <div className="w-4 h-4 rounded-md bg-gold" />
+                  <div className="w-4 h-4 rounded-md bg-amber" />
                   <span className="text-xs text-app-muted">Vowels</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-4 h-4 rounded-md bg-royal-blue" />
+                  <div className="w-4 h-4 rounded-md bg-teal" />
                   <span className="text-xs text-app-muted">Consonants</span>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function PhonicsPage() {
                     <div className="flex items-start gap-3">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
-                        style={{ background: "#EAF4FF" }}
+                        style={{ background: "#E8F5F4" }}
                       >
                         📄
                       </div>
@@ -197,7 +197,7 @@ export default function PhonicsPage() {
                           type="button"
                           data-ocid={`phonics.worksheet.button.${i + 1}`}
                           className="px-4 py-2 rounded-xl text-xs font-bold text-white"
-                          style={{ background: "#1F4B9A" }}
+                          style={{ background: "#0A8C84" }}
                         >
                           📥 View Worksheet
                         </button>
@@ -235,8 +235,8 @@ export default function PhonicsPage() {
                 className="w-24 h-24 rounded-3xl flex items-center justify-center text-6xl font-display font-black text-white mx-auto mb-4"
                 style={{
                   background: VOWELS.has(selected.letter)
-                    ? "#C9A23A"
-                    : "#1F4B9A",
+                    ? "#F39A3A"
+                    : "#0A8C84",
                 }}
               >
                 {selected.letter}
@@ -250,7 +250,7 @@ export default function PhonicsPage() {
               <p
                 className="font-mono text-xl font-bold mt-1"
                 style={{
-                  color: VOWELS.has(selected.letter) ? "#C9A23A" : "#1F4B9A",
+                  color: VOWELS.has(selected.letter) ? "#F39A3A" : "#0A8C84",
                 }}
               >
                 {selected.ipa}
@@ -261,7 +261,7 @@ export default function PhonicsPage() {
                 data-ocid="phonics.letter.close_button"
                 onClick={() => setSelected(null)}
                 className="mt-5 w-full py-3 rounded-2xl font-bold text-white text-sm"
-                style={{ background: "#1F4B9A" }}
+                style={{ background: "#0A8C84" }}
               >
                 Got it! ✓
               </button>

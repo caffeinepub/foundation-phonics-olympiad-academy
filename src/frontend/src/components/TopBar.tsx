@@ -18,22 +18,21 @@ export default function TopBar({ title }: TopBarProps) {
   return (
     <header
       className="flex items-center justify-between px-4 pt-10 pb-3"
-      style={{ background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)" }}
+      style={{ background: "linear-gradient(135deg, #0A8C84, #19A79C)" }}
     >
       <div className="flex items-center gap-2">
-        <div
-          className="w-9 h-9 rounded-xl flex items-center justify-center text-xl"
-          style={{ background: "rgba(255,255,255,0.15)" }}
-        >
-          🎓
-        </div>
+        <img
+          src="/assets/uploads/foundation-logo-1.png"
+          alt="Academy Logo"
+          className="h-9 w-auto"
+        />
         <div>
           <p className="text-white font-display font-extrabold text-base leading-tight">
             {title ?? "FP&OA"}
           </p>
           {!title && (
             <p className="text-white/60 text-[10px] leading-tight">
-              Foundation Phonics & Olympiad
+              Foundation Phonics &amp; Olympiad
             </p>
           )}
         </div>
@@ -49,7 +48,7 @@ export default function TopBar({ title }: TopBarProps) {
         </button>
         <div
           className="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm text-white"
-          style={{ background: "rgba(201,162,58,0.9)" }}
+          style={{ background: "rgba(243,154,58,0.9)" }}
         >
           {initials}
         </div>

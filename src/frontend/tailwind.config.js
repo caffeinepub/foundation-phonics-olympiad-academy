@@ -16,8 +16,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
-        display: ['Nunito', 'sans-serif'],
+        sans: ['Figtree', 'Plus Jakarta Sans', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'sans-serif'],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -70,18 +70,26 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        royal: {
-          blue: "#1F4B9A",
-          "blue-dark": "#163777",
-          "blue-light": "#2D5EC7",
+        teal: {
+          DEFAULT: "#0A8C84",
+          dark: "#06736C",
+          light: "#19A79C",
         },
-        gold: {
-          DEFAULT: "#C9A23A",
-          dark: "#A8832A",
-          light: "#E8C05A",
+        forest: {
+          DEFAULT: "#0A6A1D",
+          dark: "#054A14",
+        },
+        amber: {
+          DEFAULT: "#F39A3A",
+          dark: "#D67622",
+          light: "#FFBB63",
+        },
+        coral: {
+          DEFAULT: "#D85A3A",
+          dark: "#B8452C",
         },
         app: {
-          bg: "#EAF4FF",
+          bg: "#FAF9F6",
           text: "#111111",
           muted: "#6B7280",
         },
@@ -96,8 +104,8 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        card: "0 2px 12px rgba(31,75,154,0.08), 0 1px 4px rgba(31,75,154,0.04)",
-        nav: "0 -2px 16px rgba(31,75,154,0.12)",
+        card: "0 2px 12px rgba(10,140,132,0.08), 0 1px 4px rgba(10,140,132,0.04)",
+        nav: "0 -2px 16px rgba(10,140,132,0.12)",
       },
       keyframes: {
         "accordion-down": {

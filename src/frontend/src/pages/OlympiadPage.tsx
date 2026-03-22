@@ -15,7 +15,7 @@ type Tab = "qod" | "mocktest" | "leaderboard";
 
 const QUESTIONS: Question[] = [
   {
-    q: "What is 7 \u00d7 8?",
+    q: "What is 7 × 8?",
     opts: ["54", "56", "64", "48"],
     ans: "56",
     cat: "Math",
@@ -56,8 +56,8 @@ const SAMPLE_LEADERS = [
 
 const MEDALS = ["🥇", "🥈", "🥉"];
 const CAT_COLORS: Record<string, string> = {
-  Math: "#1F4B9A",
-  Logic: "#C9A23A",
+  Math: "#0A8C84",
+  Logic: "#F39A3A",
   Science: "#16A34A",
 };
 const TAB_LABELS: Record<Tab, string> = {
@@ -184,7 +184,7 @@ export default function OlympiadPage() {
               onClick={() => setTab(t)}
               className="flex-1 py-2 rounded-xl text-xs font-bold transition-all"
               style={{
-                background: tab === t ? "#C9A23A" : "transparent",
+                background: tab === t ? "#F39A3A" : "transparent",
                 color: tab === t ? "#fff" : "#6B7280",
               }}
             >
@@ -208,7 +208,7 @@ export default function OlympiadPage() {
               <div
                 className="rounded-3xl p-5 text-white"
                 style={{
-                  background: "linear-gradient(135deg, #C9A23A, #A8832A)",
+                  background: "linear-gradient(135deg, #F39A3A, #D67622)",
                 }}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -244,9 +244,9 @@ export default function OlympiadPage() {
                       textColor = "#DC2626";
                     }
                   } else if (opt === qodSelected) {
-                    bg = "#EAF4FF";
-                    borderColor = "#1F4B9A";
-                    textColor = "#1F4B9A";
+                    bg = "#E8F5F4";
+                    borderColor = "#0A8C84";
+                    textColor = "#0A8C84";
                   }
                   return (
                     <button
@@ -260,7 +260,7 @@ export default function OlympiadPage() {
                     >
                       <span
                         className="inline-block w-7 h-7 rounded-lg text-center text-xs font-bold mr-3 leading-7"
-                        style={{ background: "#EAF4FF", color: "#1F4B9A" }}
+                        style={{ background: "#E8F5F4", color: "#0A8C84" }}
                       >
                         {["A", "B", "C", "D"][QUESTIONS[0].opts.indexOf(opt)]}
                       </span>
@@ -277,7 +277,7 @@ export default function OlympiadPage() {
                   disabled={!qodSelected}
                   onClick={() => setQodSubmitted(true)}
                   className="w-full py-4 rounded-2xl font-bold text-white transition-all disabled:opacity-40"
-                  style={{ background: "#C9A23A" }}
+                  style={{ background: "#F39A3A" }}
                 >
                   Submit Answer
                 </button>
@@ -316,7 +316,7 @@ export default function OlympiadPage() {
                       setQodSelected(null);
                     }}
                     className="mt-3 px-5 py-2 rounded-xl text-sm font-bold text-white"
-                    style={{ background: "#1F4B9A" }}
+                    style={{ background: "#0A8C84" }}
                   >
                     Try Again
                   </button>
@@ -337,15 +337,15 @@ export default function OlympiadPage() {
                 <div className="text-center py-6">
                   <div
                     className="w-24 h-24 rounded-3xl flex items-center justify-center text-5xl mx-auto mb-4"
-                    style={{ background: "#EAF4FF" }}
+                    style={{ background: "#E8F5F4" }}
                   >
                     📝
                   </div>
-                  <h2 className="font-display font-extrabold text-xl text-royal-blue mb-2">
+                  <h2 className="font-display font-extrabold text-xl text-teal mb-2">
                     Timed Mock Test
                   </h2>
                   <p className="text-app-muted text-sm mb-6">
-                    5 questions \u00b7 60 seconds each \u00b7 Mixed topics
+                    5 questions · 60 seconds each · Mixed topics
                   </p>
                   <button
                     type="button"
@@ -353,7 +353,7 @@ export default function OlympiadPage() {
                     onClick={startTest}
                     className="px-10 py-4 rounded-2xl font-display font-bold text-white text-lg shadow-card"
                     style={{
-                      background: "linear-gradient(135deg, #C9A23A, #A8832A)",
+                      background: "linear-gradient(135deg, #F39A3A, #D67622)",
                     }}
                   >
                     🚀 Start Timed Test
@@ -364,16 +364,16 @@ export default function OlympiadPage() {
               {testActive && !testDone && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold text-royal-blue">
+                    <span className="text-sm font-semibold text-teal">
                       Question {currentQ + 1} of {QUESTIONS.length}
                     </span>
                     <span
                       className="text-sm font-bold px-3 py-1 rounded-lg text-white"
                       style={{
-                        background: timeLeft <= 10 ? "#DC2626" : "#1F4B9A",
+                        background: timeLeft <= 10 ? "#DC2626" : "#0A8C84",
                       }}
                     >
-                      \u23f1 {timeLeft}s
+                      ⏱ {timeLeft}s
                     </span>
                   </div>
                   <Progress value={(timeLeft / 60) * 100} className="h-2" />
@@ -381,7 +381,9 @@ export default function OlympiadPage() {
                   <div
                     className="rounded-3xl p-5 text-white"
                     style={{
-                      background: `linear-gradient(135deg, ${CAT_COLORS[QUESTIONS[currentQ].cat] ?? "#1F4B9A"}, #2D5EC7)`,
+                      background: `linear-gradient(135deg, ${
+                        CAT_COLORS[QUESTIONS[currentQ].cat] ?? "#0A8C84"
+                      }, #19A79C)`,
                     }}
                   >
                     <span
@@ -404,15 +406,15 @@ export default function OlympiadPage() {
                         onClick={() => setSelectedAns(opt)}
                         className="w-full p-4 rounded-2xl text-left font-semibold text-sm transition-all border-2"
                         style={{
-                          background: selectedAns === opt ? "#EAF4FF" : "#fff",
+                          background: selectedAns === opt ? "#E8F5F4" : "#fff",
                           borderColor:
-                            selectedAns === opt ? "#1F4B9A" : "#e5e7eb",
-                          color: selectedAns === opt ? "#1F4B9A" : "#111111",
+                            selectedAns === opt ? "#0A8C84" : "#e5e7eb",
+                          color: selectedAns === opt ? "#0A8C84" : "#111111",
                         }}
                       >
                         <span
                           className="inline-block w-7 h-7 rounded-lg text-center text-xs font-bold mr-3 leading-7"
-                          style={{ background: "#EAF4FF", color: "#1F4B9A" }}
+                          style={{ background: "#E8F5F4", color: "#0A8C84" }}
                         >
                           {
                             ["A", "B", "C", "D"][
@@ -432,11 +434,11 @@ export default function OlympiadPage() {
                       handleNextQuestion(answers, selectedAns, currentQ)
                     }
                     className="w-full py-4 rounded-2xl font-bold text-white"
-                    style={{ background: "#C9A23A" }}
+                    style={{ background: "#F39A3A" }}
                   >
                     {currentQ + 1 === QUESTIONS.length
                       ? "Finish Test"
-                      : "Next Question \u2192"}
+                      : "Next Question →"}
                   </button>
                 </div>
               )}
@@ -449,25 +451,25 @@ export default function OlympiadPage() {
                   data-ocid="olympiad.test.result.card"
                 >
                   <div className="text-6xl mb-4">🎉</div>
-                  <h2 className="font-display font-extrabold text-2xl text-royal-blue">
+                  <h2 className="font-display font-extrabold text-2xl text-teal">
                     Test Complete!
                   </h2>
                   <div
                     className="my-5 py-6 px-8 rounded-3xl"
                     style={{
-                      background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)",
+                      background: "linear-gradient(135deg, #0A8C84, #19A79C)",
                     }}
                   >
                     <p className="text-white/80 text-sm">Your Score</p>
                     <p className="font-display font-black text-5xl text-white mt-1">
                       {score}/{QUESTIONS.length}
                     </p>
-                    <p className="text-sm mt-1" style={{ color: "#E8C05A" }}>
+                    <p className="text-sm mt-1" style={{ color: "#FFBB63" }}>
                       {score === QUESTIONS.length
-                        ? "Perfect! \ud83c\udf1f"
+                        ? "Perfect! 🌟"
                         : score >= 3
-                          ? "Great job! \ud83d\udc4f"
-                          : "Keep practicing! \ud83d\udcaa"}
+                          ? "Great job! 👏"
+                          : "Keep practicing! 💪"}
                     </p>
                   </div>
                   <button
@@ -475,9 +477,9 @@ export default function OlympiadPage() {
                     data-ocid="olympiad.test.retry.button"
                     onClick={startTest}
                     className="w-full py-4 rounded-2xl font-bold text-white"
-                    style={{ background: "#C9A23A" }}
+                    style={{ background: "#F39A3A" }}
                   >
-                    Try Again \ud83d\udd01
+                    Try Again 🔁
                   </button>
                 </motion.div>
               )}
@@ -496,7 +498,7 @@ export default function OlympiadPage() {
               <div
                 className="rounded-3xl p-4 text-center"
                 style={{
-                  background: "linear-gradient(135deg, #C9A23A, #A8832A)",
+                  background: "linear-gradient(135deg, #F39A3A, #D67622)",
                 }}
               >
                 <p className="text-3xl mb-1">🏆</p>
@@ -541,16 +543,16 @@ export default function OlympiadPage() {
                     style={{
                       background:
                         i === 0
-                          ? "linear-gradient(135deg, #FFF8E6, #FFF)"
+                          ? "linear-gradient(135deg, #FFF5E6, #FFF)"
                           : "#fff",
-                      border: i === 0 ? "2px solid #C9A23A" : "none",
+                      border: i === 0 ? "2px solid #F39A3A" : "none",
                     }}
                   >
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
                       style={{
-                        background: i < 3 ? "#EAF4FF" : "#F5F5F5",
-                        color: "#1F4B9A",
+                        background: i < 3 ? "#E8F5F4" : "#F5F5F5",
+                        color: "#0A8C84",
                       }}
                     >
                       {i < 3 ? (
@@ -561,7 +563,7 @@ export default function OlympiadPage() {
                     </div>
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white flex-shrink-0"
-                      style={{ background: "#1F4B9A" }}
+                      style={{ background: "#0A8C84" }}
                     >
                       {entry.name
                         .split(" ")
@@ -580,7 +582,7 @@ export default function OlympiadPage() {
                     {i === 0 && (
                       <span
                         className="text-xs font-bold px-2 py-1 rounded-lg"
-                        style={{ background: "#FFF8E6", color: "#C9A23A" }}
+                        style={{ background: "#FFF5E6", color: "#F39A3A" }}
                       >
                         Top!
                       </span>

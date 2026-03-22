@@ -66,7 +66,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
         <div className="flex flex-col items-center gap-4">
           <div
             className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin"
-            style={{ borderColor: "#1F4B9A", borderTopColor: "transparent" }}
+            style={{ borderColor: "#0A8C84", borderTopColor: "transparent" }}
           />
           <p className="text-app-muted font-medium">Loading...</p>
         </div>
@@ -112,7 +112,7 @@ function IndexRoute() {
     <div className="min-h-screen flex items-center justify-center bg-app-bg">
       <div
         className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin"
-        style={{ borderColor: "#1F4B9A", borderTopColor: "transparent" }}
+        style={{ borderColor: "#0A8C84", borderTopColor: "transparent" }}
       />
     </div>
   );

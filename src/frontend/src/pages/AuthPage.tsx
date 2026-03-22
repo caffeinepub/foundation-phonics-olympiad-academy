@@ -26,18 +26,11 @@ export default function AuthPage() {
         transition={{ duration: 0.5 }}
         className="text-center mb-8"
       >
-        <div
-          className="w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-card"
-          style={{ background: "linear-gradient(135deg, #1F4B9A, #2D5EC7)" }}
-        >
-          <span className="text-5xl">🎓</span>
-        </div>
-        <h1 className="font-display font-extrabold text-2xl text-royal-blue leading-tight">
-          Foundation Phonics
-        </h1>
-        <p className="font-display font-bold text-lg text-gold">
-          &amp; Olympiad Academy
-        </p>
+        <img
+          src="/assets/uploads/foundation-logo-1.png"
+          alt="Foundation Phonics &amp; Olympiad Academy"
+          className="w-48 h-auto mx-auto mb-4"
+        />
         <p className="text-app-muted text-sm mt-1">Learn · Compete · Excel</p>
       </motion.div>
 
@@ -56,9 +49,9 @@ export default function AuthPage() {
           }
           className="w-full rounded-2xl p-5 text-left transition-all duration-200 shadow-card border-2"
           style={{
-            background: selectedRole === "student" ? "#1F4B9A" : "#fff",
-            borderColor: selectedRole === "student" ? "#C9A23A" : "transparent",
-            color: selectedRole === "student" ? "#fff" : "#1F4B9A",
+            background: selectedRole === "student" ? "#0A8C84" : "#fff",
+            borderColor: selectedRole === "student" ? "#F39A3A" : "transparent",
+            color: selectedRole === "student" ? "#fff" : "#0A8C84",
           }}
         >
           <div className="flex items-center gap-4">
@@ -68,7 +61,7 @@ export default function AuthPage() {
                 background:
                   selectedRole === "student"
                     ? "rgba(255,255,255,0.2)"
-                    : "#EAF4FF",
+                    : "#E8F5F4",
               }}
             >
               📚
@@ -88,7 +81,7 @@ export default function AuthPage() {
               </p>
             </div>
             {selectedRole === "student" && (
-              <div className="ml-auto text-xl" style={{ color: "#C9A23A" }}>
+              <div className="ml-auto text-xl" style={{ color: "#F39A3A" }}>
                 ✓
               </div>
             )}
@@ -103,9 +96,9 @@ export default function AuthPage() {
           }
           className="w-full rounded-2xl p-5 text-left transition-all duration-200 shadow-card border-2"
           style={{
-            background: selectedRole === "parent" ? "#C9A23A" : "#fff",
-            borderColor: selectedRole === "parent" ? "#1F4B9A" : "transparent",
-            color: selectedRole === "parent" ? "#fff" : "#C9A23A",
+            background: selectedRole === "parent" ? "#F39A3A" : "#fff",
+            borderColor: selectedRole === "parent" ? "#0A8C84" : "transparent",
+            color: selectedRole === "parent" ? "#fff" : "#F39A3A",
           }}
         >
           <div className="flex items-center gap-4">
@@ -115,7 +108,7 @@ export default function AuthPage() {
                 background:
                   selectedRole === "parent"
                     ? "rgba(255,255,255,0.2)"
-                    : "#FFF8E6",
+                    : "#FFF5E6",
               }}
             >
               👨‍👩‍👦
@@ -157,7 +150,7 @@ export default function AuthPage() {
           style={{
             background: isLoggingIn
               ? "#6B7280"
-              : "linear-gradient(135deg, #1F4B9A, #2D5EC7)",
+              : "linear-gradient(135deg, #0A8C84, #19A79C)",
           }}
         >
           {isLoggingIn ? (

@@ -16,13 +16,13 @@ const SAMPLE_ANNOUNCEMENTS = [
   {
     id: BigInt(2),
     title: "📅 Holiday Schedule Update",
-    body: "Classes will be suspended from Nov 1\u20135 for Diwali break. Regular schedule resumes Nov 6.",
+    body: "Classes will be suspended from Nov 1–5 for Diwali break. Regular schedule resumes Nov 6.",
     announcementType: "schedule",
   },
   {
     id: BigInt(3),
-    title: "🏆 Olympiad Mock Test \u2013 This Saturday",
-    body: "The monthly mock Olympiad test is scheduled for this Saturday, 10 AM\u201312 PM. All students of Grade 3\u20138 are encouraged to participate.",
+    title: "🏆 Olympiad Mock Test – This Saturday",
+    body: "The monthly mock Olympiad test is scheduled for this Saturday, 10 AM–12 PM. All students of Grade 3–8 are encouraged to participate.",
     announcementType: "event",
   },
 ];
@@ -34,8 +34,8 @@ const STATS = [
 ];
 
 const TYPE_COLORS: Record<string, { bg: string; text: string }> = {
-  offer: { bg: "#FFF8E6", text: "#C9A23A" },
-  schedule: { bg: "#EAF4FF", text: "#1F4B9A" },
+  offer: { bg: "#FFF5E6", text: "#F39A3A" },
+  schedule: { bg: "#E8F5F4", text: "#0A8C84" },
   event: { bg: "#F0FDF4", text: "#16A34A" },
   general: { bg: "#F5F5F5", text: "#6B7280" },
 };
@@ -61,7 +61,7 @@ export default function ParentDashboard() {
       {/* Header */}
       <div
         className="px-5 pt-12 pb-6"
-        style={{ background: "linear-gradient(135deg, #C9A23A, #A8832A)" }}
+        style={{ background: "linear-gradient(135deg, #F39A3A, #D67622)" }}
       >
         <div className="flex items-center justify-between">
           <div>
@@ -96,10 +96,10 @@ export default function ParentDashboard() {
           </div>
           <div
             className="rounded-2xl p-4 text-center"
-            style={{ background: "#EAF4FF" }}
+            style={{ background: "#E8F5F4" }}
           >
             <p className="text-4xl mb-2">🔗</p>
-            <p className="font-semibold text-royal-blue text-sm">
+            <p className="font-semibold text-teal text-sm">
               Link a student account
             </p>
             <p className="text-app-muted text-xs mt-1">
@@ -109,7 +109,7 @@ export default function ParentDashboard() {
               type="button"
               data-ocid="parent.link_student.button"
               className="mt-3 px-5 py-2.5 rounded-xl text-sm font-bold text-white"
-              style={{ background: "#1F4B9A" }}
+              style={{ background: "#0A8C84" }}
             >
               Link Student
             </button>
@@ -127,7 +127,7 @@ export default function ParentDashboard() {
               className="bg-white rounded-2xl p-3 text-center shadow-card"
             >
               <p className="text-2xl">{stat.icon}</p>
-              <p className="font-display font-bold text-lg text-royal-blue">
+              <p className="font-display font-bold text-lg text-teal">
                 {stat.value}
               </p>
               <p className="text-xs text-app-muted">{stat.label}</p>
